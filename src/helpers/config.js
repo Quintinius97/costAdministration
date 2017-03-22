@@ -15,7 +15,6 @@ module.exports = function (path, obj) {
   var objs = obj.split('.');
   for (var entity in objs) {
     for (var i in jsonObj) {
-      console.log(i);
       if (i == objs[entity]) {
         jsonObj = jsonObj[i];
         break;
