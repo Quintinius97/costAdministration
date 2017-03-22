@@ -7,12 +7,15 @@ module.exports = function (app) {
 
   //Cost Routers:
   var cost = '/cost';
-  require('./routers/cost')(app, cost);
+  require('./routers/costs')(app, cost);
   require('./routers/costAll')(app, cost + '/all');
 
   //Category Routers:
   var category = '/category';
-  require('./routers/category')(app, category);
+  require('./routers/categories')(app, category);
   require('./routers/categoryAll')(app, category + '/all');
   require('./routers/categoryById')(app, category + '/:catId');
+
+  //Setup
+  require('./routers/setupDB')(app, "/sql/setup");
 };
