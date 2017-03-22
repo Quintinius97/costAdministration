@@ -1,11 +1,13 @@
 {
-  "name": "simple",
+  "name": "costAdministration",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./src/index.js"
   },
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "express-jwt": "^5.1.0",
+    "mysql": "^2.13.0"
   }
 }
