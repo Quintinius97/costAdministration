@@ -1,8 +1,8 @@
-var config = require('./helpers/config');
-var mysql = require('mysql');
+const config = require('./helpers/config');
+const mysql = require('mysql');
 
-var connection = config('./config/dbConfig','connection');
-var pool = mysql.createPool(
+const connection = config('./config/dbConfig','connection');
+let pool = mysql.createPool(
   config('./config/dbConfig','connection')
 );
 

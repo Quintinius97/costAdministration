@@ -1,20 +1,20 @@
-"use strict";
-module.exports = function (path, obj) {
+'use strict';
+module.exports = function(path, obj) {
   if (!path.endsWith('.json')) {
-    path = path + ".json";
+    path = path + '.json';
   }
 
-  var fs = require('fs');
-  var data = fs.readFileSync(path, 'utf8', function (err, data) {
+  const fs = require('fs');
+  let data = fs.readFileSync(path, 'utf8', function (err, data) {
     if (err) {
       return console.error(err);
     }
   });
 
-  var jsonObj = JSON.parse(data);
-  var objs = obj.split('.');
-  for (var entity in objs) {
-    for (var i in jsonObj) {
+  let jsonObj = JSON.parse(data);
+  let objs = obj.split('.');
+  for (let entity in objs) {
+    for (let i in jsonObj) {
       if (i == objs[entity]) {
         jsonObj = jsonObj[i];
         break;

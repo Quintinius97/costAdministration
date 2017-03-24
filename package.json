@@ -9,5 +9,9 @@
     "express": "^4.15.2",
     "express-jwt": "^5.1.0",
     "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-google": "^0.7.1"
   }
 }
