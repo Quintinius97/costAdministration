@@ -1,6 +1,7 @@
 
 # Custom 
 .vscode/
+*.nosql
 
 # Created by https://www.gitignore.io/api/intellij+iml,node,grunt
 
