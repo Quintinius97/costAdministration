@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "userId": 1,
+  "title": "New Car",
+  "desc": "I have bought a new car",
+  "category": "Transport",
+  "date": "EPOCH-TIME",
+  "price": 20000,
+  "currency": "EUR"
+}
