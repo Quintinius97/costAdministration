@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./src/index.js",
-    "check": "./node_modules/eslint/bin/eslint.js src"
+    "check-unix": "./node_modules/eslint/bin/eslint.js src; exit 0;",
+    "check-windows": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
