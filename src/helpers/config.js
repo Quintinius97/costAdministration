@@ -15,7 +15,7 @@ module.exports = function(path, obj) {
   let objs = obj.split('.');
   for(let i = 0; i < objs.length; i++) {
     for(let j = 0; j < jsonObj.length; j++) {
-      if(j == objs[i]) {
+      if(j === objs[i]) {
         jsonObj = jsonObj[j];
         break;
       }

@@ -1,11 +1,19 @@
 {
   "extends": [
-    "google"
+    "google",
+    "eslint:recommended"
   ],
+  "root": true,
   "rules": {
-    "eol-last": "off"
+    "eol-last": "off",
+    "no-console": "off",
+    "eqeqeq": "warn"
   },
   "parserOptions": {
     "ecmaVersion": 6
+  },
+  "env": {
+    "browser": true,
+    "node": true
   }
 }
