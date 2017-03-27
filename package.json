@@ -1,10 +1,10 @@
 {
-  "name": "costAdministration",
+  "name": "costadministration",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node ./src/index.js",
-    "check": "eslint src"
+    "check": "./node_modules/eslint/bin/eslint.js src"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
