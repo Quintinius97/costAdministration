@@ -1,9 +1,9 @@
 const config = require('./helpers/config');
 const mysql = require('mysql');
 
-const connection = config('./config/dbConfig','connection');
+const connection = config('./config/dbConfig', 'connection');
 let pool = mysql.createPool(
-  config('./config/dbConfig','connection')
+  config('./config/dbConfig', 'connection')
 );
 
 pool.getConnection(function(err, connection) {

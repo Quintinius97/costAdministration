@@ -5,7 +5,7 @@ module.exports = function(path, obj) {
   }
 
   const fs = require('fs');
-  let data = fs.readFileSync(path, 'utf8', function (err, data) {
+  let data = fs.readFileSync(path, 'utf8', function(err, data) {
     if (err) {
       return console.error(err);
     }
