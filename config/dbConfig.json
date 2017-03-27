@@ -1,9 +1,4 @@
 {
-  "connection": {
-    "host": "localhost",
-    "port": "3306",
-    "user": "",
-    "password": "",
-    "database": "test"
-  }
+  "user": "./data/user.nosql",
+  "category": "./data/category.nosql"
 }

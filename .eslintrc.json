@@ -1,10 +1,9 @@
 {
   "extends": [
-    // "eslint:recommended",
     "google"
   ],
   "rules": {
-    "eol-last": 1
+    "eol-last": "off"
   },
   "parserOptions": {
     "ecmaVersion": 6

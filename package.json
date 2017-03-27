@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/index.js"
+    "start": "node ./src/index.js",
+    "check": "eslint src"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "express-jwt": "^5.1.0"
+    "express-jwt": "^5.1.0",
+    "nosql": "^5.0.3"
   },
   "devDependencies": {
     "eslint": "^3.18.0",

@@ -1,22 +1,22 @@
 'use strict';
 module.exports = function(path, obj) {
-  if (!path.endsWith('.json')) {
+  if(!path.endsWith('.json')) {
     path = path + '.json';
   }
 
   const fs = require('fs');
   let data = fs.readFileSync(path, 'utf8', function(err, data) {
-    if (err) {
+    if(err) {
       return console.error(err);
     }
   });
 
   let jsonObj = JSON.parse(data);
   let objs = obj.split('.');
-  for (let entity in objs) {
-    for (let i in jsonObj) {
-      if (i == objs[entity]) {
-        jsonObj = jsonObj[i];
+  for(let i = 0; i < objs.length; i++) {
+    for(let j = 0; j < jsonObj.length; j++) {
+      if(j == objs[i]) {
+        jsonObj = jsonObj[j];
         break;
       }
     }
