@@ -15,7 +15,4 @@ module.exports = function(app) {
   require('./routers/categories')(app, category);
   require('./routers/categoryAll')(app, category + '/all');
   require('./routers/categoryById')(app, category + '/:catId');
-
-  // Setup
-  require('./routers/setupDB')(app, '/sql/setup');
 };
