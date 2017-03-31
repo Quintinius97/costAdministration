@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-require('./dbConnector').insert('user',
+require('./dbConnector').insert('category', 
     {name: "Hans Msadeier", userName: "myUserName", pw_hash: "asdfasdf"}
 );
 
