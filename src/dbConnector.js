@@ -1,10 +1,10 @@
-var Db = require('tingodb')().Db;
+'use strict';
+let Db = require('tingodb')().Db;
+let db = new Db('./data', {});
 
-
-var db = new Db('./data', {});
-var category = db.collection("category.db");
-var cost = db.collection("cost.db");
-var user = db.collection("user.db");
+let category = db.collection("category.db");
+let cost = db.collection("cost.db");
+let user = db.collection("user.db");
 
 module.exports.insert = function(db, jsonObj) {
   switch(db) {
@@ -18,8 +18,6 @@ module.exports.insert = function(db, jsonObj) {
     case 'user':
       //userDB.insert(jsonObj, true).where('userName', jsonObj['userName']);
       break;
-    default:
-      db.category.insert(jsonObj);
   }
 };
 
@@ -42,3 +40,24 @@ module.exports.insert = function(db, jsonObj) {
 //     default:
 //   }
 //};
+
+module.exports.createDB = function() {
+  category.drop(function() {
+    category = db.createCollection("category.db", {autoIndexId: false},
+        function() {
+          category.createIndex({"name": 1}, {unique: true}, function() {
+          });
+        });
+  });
+
+  user.drop(function() {
+    user = db.createCollection("user.db", {autoIndexId: false}, function() {
+      category.createIndex({"userName": 1}, {unique: true}, function() {
+      });
+    });
+  });
+  cost.drop(function() {
+    cost = db.createCollection("cost.db", {autoIndexId: true}, function() {
+    });
+  });
+};
