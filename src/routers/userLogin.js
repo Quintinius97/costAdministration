@@ -1,8 +1,11 @@
 const crypto = require('../helpers/cryptography');
+const bodyParser = require('body-parser').json();
+const dbConnection = require('../dbConnector');
+const jwt = require('../helpers/jwt');
 
 module.exports = function(app, route) {
   app.route(route)
-  .post(function(req, res) {
+  .post(bodyParser, function(req, res) {
     //Checking the content-type
     if(req.get('content-type') !== 'application/json') {
       return res.status(406).send(
@@ -19,9 +22,32 @@ module.exports = function(app, route) {
     let body = {};
     body.username = req.body.username;
     body.password = req.body.password;
-    if(body.name === undefined || body.username === undefined || body.pw_hash === undefined) {
+    if(body.username === undefined || body.password === undefined) {
       return res.status(422).send(
           {error: 'Missing required fields'});
     }
+
+    //Checking whether the user does exist
+    dbConnection.get('user', body.username, function(err, item) {
+      if(err) {
+        return res.status(410).send({error: 'User does not exist'});
+      }
+      //Checking whether the provided pw does match
+      crypto.comparePassword(body.password, item.pw_hash, function(err, isPasswordMatch) {
+        if(err || !isPasswordMatch) {
+          return res.status(401).send({error: 'Password does not match'});
+        } else {
+          //Creating the Auth Token
+          let token = jwt.create(body.username);
+          if(token === null || token === undefined) {
+            return res.status(500).send({error: 'Token generation has failed'});
+          }
+          return res.status(201).send({
+            info: 'Token has been successfully created',
+            jwt: token
+          });
+        }
+      });
+    });
   });
 };

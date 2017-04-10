@@ -19,10 +19,7 @@ module.exports.cryptPasswordSync = function(password) {
 
 module.exports.comparePassword = function(password, hash, cb) {
   bcrypt.compare(password, hash, function(err, isPasswordMatch) {
-    if(err) {
-      return cb(err);
-    }
-    return cb(null, isPasswordMatch);
+    return cb(err, isPasswordMatch);
   });
 };
 

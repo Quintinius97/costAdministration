@@ -3,9 +3,9 @@ const secret = '2ne-4U_rYn8&ReuQX42HfMEa2wL^4eAeNpRtVm2#*%gDREQ^5u2#Rr-Lf*z!qY3$
 const issuer = 'costAdministrationServer';
 const audience = 'cost:user';
 
-module.exports.create = function(username, cb) {
+module.exports.create = function(username) {
   //create a new token wich is valid one hour
-  jwt.sign(
+  return jwt.sign(
       {
         iat: Math.floor(Date.now() / 1000),
         exp: Math.floor(Date.now() / 1000) + 3600,
@@ -13,9 +13,7 @@ module.exports.create = function(username, cb) {
         iss: issuer,
         user: username,
         aud: audience
-      }, secret, function(err, token) {
-        cb(err, token);
-      });
+      }, secret);
 };
 
 module.exports.connect = function(jwt, cb) {
