@@ -19,7 +19,7 @@ module.exports.create = function(username, cb) {
 };
 
 module.exports.connect = function(jwt, cb) {
-  jwt.verify(jwt, secret, function(err, token) {
+  jwt.verify(jwt, secret, function(err, decoded) {
     cb(err, decoded);
   });
 };

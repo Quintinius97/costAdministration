@@ -110,8 +110,7 @@ Returns:
 ```
 [
     {
-        "id": 1,
-        "title": "Transport",
+        "name": "Transport",
         "desc": "Getting me from A to B"
     },
     ...
@@ -126,8 +125,7 @@ Header: Authorization: jwt
 Returns:
 ```
 {
-    "id": 1,
-    "title": "Transport",
+    "name": "Transport",
     "desc": "Getting me from A to B"
 }
 ```
