@@ -13,9 +13,13 @@ module.exports.create = function(username, cb) {
         iss: issuer,
         user: username,
         aud: audience
-      }, secret, cb(err, token));
+      }, secret, function(err, token) {
+        cb(err, token);
+      });
 };
 
 module.exports.connect = function(jwt, cb) {
-  jwt.verify(jwt, secret, cb(err, decoded));
+  jwt.verify(jwt, secret, function(err, token) {
+    cb(err, decoded);
+  });
 };

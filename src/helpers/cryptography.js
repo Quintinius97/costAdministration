@@ -5,9 +5,11 @@ module.exports.cryptPassword = function(password, cb) {
     if(err) {
       return cb(err);
     }
+
     bcrypt.hash(password, salt, function(err, hash) {
-      cb(err, hash);
+      return cb(err, hash);
     });
+
   });
 };
 
@@ -16,7 +18,12 @@ module.exports.cryptPasswordSync = function(password) {
 };
 
 module.exports.comparePassword = function(password, hash, cb) {
-  bcrypt.compare(password, hash, cb);
+  bcrypt.compare(password, hash, function(err, isPasswordMatch) {
+    if(err) {
+      return cb(err);
+    }
+    return cb(null, isPasswordMatch);
+  });
 };
 
 module.exports.comparePasswordSync = function(password, hash) {
