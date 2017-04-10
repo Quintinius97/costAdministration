@@ -23,7 +23,7 @@ module.exports.insert = function(db, jsonObj, cb) {
       );
       break;
     case 'user':
-      user.createIndex({"userName": 1}, {unique: true});
+      user.createIndex({"username": 1}, {unique: true});
       user.insert(jsonObj, function(err) {
             cb(err);
           }
@@ -36,14 +36,12 @@ module.exports.createDB = function() {
   category.drop(function() {
     category = db.createCollection("category.db", {autoIndexId: false}, function() {
       category.createIndex({"name": 1}, {unique: true}, function() {
-        category.insert({"name": "test"});
-        category.insert({"name": "test"});
       });
     });
   });
   user.drop(function() {
     user = db.createCollection("user.db", {autoIndexId: false}, function() {
-      category.createIndex({"userName": 1}, {unique: true}, function() {
+      category.createIndex({"username": 1}, {unique: true}, function() {
       });
     });
   });
