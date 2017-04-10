@@ -9,7 +9,6 @@ module.exports.cryptPassword = function(password, cb) {
     bcrypt.hash(password, salt, function(err, hash) {
       return cb(err, hash);
     });
-
   });
 };
 
