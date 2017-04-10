@@ -1,10 +1,15 @@
 'use strict';
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const app = express();
 
-require('./dbConnector').insert('category', 
+let teet=require('./dbConnector');
+//teet.createDB();
+teet.insert('category', 
+    {name: "Hans Msadeier", userName: "myUserName", pw_hash: "asdfasdf"}
+);
+teet.insert('category', 
     {name: "Hans Msadeier", userName: "myUserName", pw_hash: "asdfasdf"}
 );
 
