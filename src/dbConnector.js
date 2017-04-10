@@ -32,6 +32,24 @@ module.exports.insert = function(db, jsonObj, cb) {
   }
 };
 
+module.exports.get = function(db, key, cb) {
+  switch(db) {
+    case 'category':
+      category.findOne({"name":key}, function(err, item)
+        {cb(err, item);});
+      break;
+    case 'cost':
+      cost.findOne({"id":key}, function(err, item)
+        {cb(err, item);});
+      break;
+    case 'user':
+      user.findOne({"username":key}, function(err, item)
+        {cb(err, item);});
+      break;
+  }
+};
+
+
 module.exports.createDB = function() {
   category.drop(function() {
     category = db.createCollection("category.db", {autoIndexId: false}, function() {
