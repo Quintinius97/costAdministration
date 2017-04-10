@@ -4,6 +4,7 @@ const dbConnection = require('../dbConnector');
 module.exports = function(app, route) {
   app.route(route)
   .post(bodyParser, function(req, res) {
+
     //Checking the content-type
     if(req.get('content-type') !== 'application/json') {
       return res.status(406).send(
