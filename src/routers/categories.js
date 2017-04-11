@@ -38,7 +38,8 @@ module.exports = function(app, route) {
       //Verify color is parsable
       let htmlColor = new RegExp('^#([0-9A-Fa-f]{6}|([0-9A-Fa-f]{3}))$');
       if(!body.color.match(htmlColor)) {
-        return res.status(422).send({error: 'Color has to be in a valid color format e.g: #07ffcc'});
+        return res.status(422).send(
+            {error: 'Color has to be in a valid color format e.g: #07ffcc'});
       }
 
       // Verify category does not exist
