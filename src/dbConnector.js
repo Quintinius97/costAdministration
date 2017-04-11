@@ -51,6 +51,23 @@ module.exports.get = function(collection, key, cb) {
   }
 };
 
+module.exports.delete = function(db, key, cb) {
+  switch(db) {
+    case 'category':
+      category.remove({"name":key}, {w:1}, function(err, result)
+        {cb(err, result);});
+      break;
+    case 'cost':
+      cost.remove({"id":key}, {w:1}, function(err, result)
+        {cb(err, result);});
+      break;
+    case 'user':
+      user.remove({"username":key}, {w:1}, function(err, result)
+        {cb(err, result);});
+      break;
+  }
+};
+
 module.exports.createDB = function() {
   category.drop(function() {
     category = db.createCollection("category.db", {autoIndexId: true}, function() {
