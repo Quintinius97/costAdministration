@@ -49,7 +49,8 @@ module.exports = function(app, route) {
         if(err) {
           return res.status(500).send({error: 'Database connection has failed'});
         }
-        if(item === null || item === undefined || item.username !== decoded.user) {
+        if((item === null || item === undefined) ||
+            (item.username !== decoded.user && item.username !== undefined)) {
           return res.status(410).send({error: 'Category does not exist'});
         }
 

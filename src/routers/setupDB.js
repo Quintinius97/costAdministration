@@ -56,7 +56,7 @@ module.exports = function(app, route) {
               }
               if(cat == standardCategories.length - 1) {
                 return res.status(200).send(
-                    {error: 'Standard Category creation finished successfully'});
+                    {info: 'DB creation finished successfully'});
               }
             });
           }
