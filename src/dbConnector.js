@@ -9,7 +9,7 @@ let user = db.collection("user.db");
 module.exports.insert = function(db, jsonObj, cb) {
   switch(db) {
     case 'category':
-      category.createIndex({"name": 1}, {unique: true});
+      category.createIndex({"id": 1}, {unique: true});
       category.insert(jsonObj, function(err) {
             cb(err);
           }
@@ -53,7 +53,7 @@ module.exports.get = function(db, key, cb) {
 module.exports.createDB = function() {
   category.drop(function() {
     category = db.createCollection("category.db", {autoIndexId: false}, function() {
-      category.createIndex({"name": 1}, {unique: true}, function() {
+      category.createIndex({"id": 1}, {unique: true}, function() {
       });
     });
   });
