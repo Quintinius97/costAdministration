@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser').json();
 const dbConnection = require('../dbConnector');
+const jwt = require('../helpers/jwt');
 
 module.exports = function(app, route) {
   app.route(route)
@@ -26,7 +27,7 @@ module.exports = function(app, route) {
       let body = {};
       body.name = req.body.name;
       body.desc = req.body.desc;
-      body.username = decoded.name;
+      body.username = decoded.user;
 
       if(body.name === undefined || body.desc === undefined) {
         return res.status(422).send(
@@ -34,11 +35,11 @@ module.exports = function(app, route) {
       }
 
       // Verify category does not exist
-      dbConnection.get('category', body.category, function(err, item) {
+      dbConnection.get('category', body.name, function(err, item) {
         if(err) {
           return res.status(500).send({error: 'Database connection has failed'});
         }
-        if(item !== undefined && item.username === decoded.user) {
+        if((item !== null && item !== undefined) && item.username === decoded.user) {
           return res.status(422).send({error: 'Category does already exist'});
         }
 

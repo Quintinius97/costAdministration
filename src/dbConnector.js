@@ -9,7 +9,6 @@ let user = db.collection("user.db");
 module.exports.insert = function(db, jsonObj, cb) {
   switch(db) {
     case 'category':
-      category.createIndex({"id": 1}, {unique: true});
       category.insert(jsonObj, function(err) {
             cb(err);
           }
@@ -32,29 +31,29 @@ module.exports.insert = function(db, jsonObj, cb) {
   }
 };
 
-module.exports.get = function(db, key, cb) {
-  switch(db) {
+module.exports.get = function(collection, key, cb) {
+  switch(collection) {
     case 'category':
-      category.findOne({"name":key}, function(err, item)
-        {cb(err, item);});
+      category.findOne({"name": key}, function(err, item) {
+        cb(err, item);
+      });
       break;
     case 'cost':
-      cost.findOne({"id":key}, function(err, item)
-        {cb(err, item);});
+      cost.findOne({"id": key}, function(err, item) {
+        cb(err, item);
+      });
       break;
     case 'user':
-      user.findOne({"username":key}, function(err, item)
-        {cb(err, item);});
+      user.findOne({"username": key}, function(err, item) {
+        cb(err, item);
+      });
       break;
   }
 };
 
-
 module.exports.createDB = function() {
   category.drop(function() {
-    category = db.createCollection("category.db", {autoIndexId: false}, function() {
-      category.createIndex({"id": 1}, {unique: true}, function() {
-      });
+    category = db.createCollection("category.db", {autoIndexId: true}, function() {
     });
   });
   user.drop(function() {
