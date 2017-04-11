@@ -26,12 +26,19 @@ module.exports = function(app, route) {
       //Checking all required values and removing additional ones to prevent DB dumping
       let body = {};
       body.name = req.body.name;
+      body.color = req.body.color;
       body.desc = req.body.desc;
       body.username = decoded.user;
 
-      if(body.name === undefined) {
+      if(body.name === undefined || body.color === undefined) {
         return res.status(422).send(
             {error: 'Missing required fields'});
+      }
+
+      //Verify color is parsable
+      var htmlColor = new RegExp('#((0-9A-Fa-f){6}|((0-9A-Fa-f){3})');
+      if(!body.color.match(htmlColor)) {
+        return res.status(422).send({error: 'Color has to be in a valid color format e.g: #07ffcc'});
       }
 
       // Verify category does not exist

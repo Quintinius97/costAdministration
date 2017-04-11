@@ -104,6 +104,7 @@ Header: Authorization: jwt
 Body:
 {
     "name": "Transport",
+    "color": "#ff0000",
     "desc": "Getting me from A to B"
 }
 ```
@@ -118,6 +119,7 @@ Returns:
 [
     {
         "name": "Transport",
+        "color": "#ff0000",
         "desc": "Getting me from A to B"
     },
     ...
@@ -133,6 +135,7 @@ Returns:
 ```
 {
     "name": "Transport",
+    "color": "#ff0000",
     "desc": "Getting me from A to B"
 }
 ```
