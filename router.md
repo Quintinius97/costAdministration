@@ -25,6 +25,13 @@ Returns
     "password": "myPassword"
 }
 ```
+Returns
+```
+{
+    "jwt": "asfdgjhgfdsadfgdsadfgh"
+}
+```
+
 ## Costs
 ### GetbyID
 **GET**

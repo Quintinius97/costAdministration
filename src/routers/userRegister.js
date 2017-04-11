@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser').json();
 const dbConnection = require('../dbConnector');
 const crypto = require('../helpers/cryptography');
+const jwt = require('../helpers/jwt');
 
 module.exports = function(app, route) {
   app.route(route)
@@ -45,8 +46,19 @@ module.exports = function(app, route) {
               return res.status(422).send(
                   {error: 'User does already exist'});
             } else {
-              return res.status(200).send(
-                  {info: 'User has been successfully created'});
+              //Creating the Auth Token
+              let token = jwt.create(body.username);
+              if(token === null || token === undefined) {
+                return res.status(500).send(
+                    {
+                      error: 'Token generation has failed',
+                      info: 'User has been successfully created'
+                    });
+              }
+              return res.status(201).send({
+                info: 'User has been successfully created',
+                jwt: token
+              });
             }
           });
     });
