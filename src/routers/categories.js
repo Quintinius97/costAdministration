@@ -29,7 +29,7 @@ module.exports = function(app, route) {
       body.desc = req.body.desc;
       body.username = decoded.user;
 
-      if(body.name === undefined || body.desc === undefined) {
+      if(body.name === undefined) {
         return res.status(422).send(
             {error: 'Missing required fields'});
       }
@@ -39,7 +39,8 @@ module.exports = function(app, route) {
         if(err) {
           return res.status(500).send({error: 'Database connection has failed'});
         }
-        if((item !== null && item !== undefined) && item.username === decoded.user) {
+        if((item !== null && item !== undefined) &&
+            (item.username === decoded.user || item.username === undefined)) {
           return res.status(422).send({error: 'Category does already exist'});
         }
 

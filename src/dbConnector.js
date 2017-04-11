@@ -51,36 +51,50 @@ module.exports.get = function(collection, key, cb) {
   }
 };
 
-module.exports.delete = function(db, key, cb) {
-  switch(db) {
+module.exports.delete = function(collection, key, cb) {
+  switch(collection) {
     case 'category':
-      category.remove({"name":key}, {w:1}, function(err, result)
-        {cb(err, result);});
+      category.remove({"name": key}, {w: 1}, function(err, result) {
+        cb(err, result);
+      });
       break;
     case 'cost':
-      cost.remove({"id":key}, {w:1}, function(err, result)
-        {cb(err, result);});
+      cost.remove({"id": key}, {w: 1}, function(err, result) {
+        cb(err, result);
+      });
       break;
     case 'user':
-      user.remove({"username":key}, {w:1}, function(err, result)
-        {cb(err, result);});
+      user.remove({"username": key}, {w: 1}, function(err, result) {
+        cb(err, result);
+      });
       break;
   }
 };
 
-module.exports.createDB = function() {
-  category.drop(function() {
-    category = db.createCollection("category.db", {autoIndexId: true}, function() {
-    });
-  });
-  user.drop(function() {
-    user = db.createCollection("user.db", {autoIndexId: false}, function() {
-      category.createIndex({"username": 1}, {unique: true}, function() {
+module.exports.createDB = function(collection, cb) {
+  switch(collection) {
+    case 'category':
+      category.drop(function() {
+        category = db.createCollection("category.db", {autoIndexId: true}, function(err) {
+          cb(err);
+        });
       });
-    });
-  });
-  cost.drop(function() {
-    cost = db.createCollection("cost.db", {autoIndexId: true}, function() {
-    });
-  });
+      break;
+    case 'cost':
+      cost.drop(function() {
+        cost = db.createCollection("cost.db", {autoIndexId: true}, function(err) {
+          cb(err);
+        });
+      });
+      break;
+    case 'user':
+      user.drop(function() {
+        user = db.createCollection("user.db", {autoIndexId: false}, function() {
+          user.createIndex({"username": 1}, {unique: true}, function(err) {
+            cb(err);
+          });
+        });
+      });
+      break;
+  }
 };
