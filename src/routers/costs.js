@@ -36,6 +36,7 @@ module.exports = function(app, route) {
       body.date = req.body.date;
       body.price = req.body.price;
       body.currency = req.body.currency;
+      body.username = decoded.user;
 
       if(body.title === undefined || body.date === undefined
           || body.price === undefined || body.currency === undefined) {
@@ -54,11 +55,13 @@ module.exports = function(app, route) {
 
         //Verify price and date are parsable
         body.price = parseFloat(body.price);
-        let date = new Date(0);
-        date.setUTCSeconds(parseInt(body.date));
-        if(isNaN(body.price)
-            || date < new Date(2000, 1, 1, 1, 1, 1, 1) || date < new Date(2200, 1, 1, 1, 1, 1, 1)) {
-          return res.status(422).send({error: 'Wrong content in required fields'});
+        if(isNaN(body.price)) {
+          return res.status(422).send({error: 'Price has to be a valid number'});
+        }
+        body.date = parseInt(body.date);
+        if(body.date < 946684800 || body.date > 7289654399) {
+          return res.status(422).send(
+              {error: 'Timestamp has to be a valid epoch timestamp between the 01-01-2000 and the 31-12-2200'});
         }
 
         //Insert cost into db
