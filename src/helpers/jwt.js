@@ -18,7 +18,12 @@ module.exports.create = function(username) {
 };
 
 module.exports.connect = function(jwt, cb) {
-  jwt.verify(jwt, secret, function(err, decoded) {
-    cb(err, decoded);
-  });
+  jwt.verify(jwt, secret,
+      {
+        aud: audience,
+        iss: issuer,
+        sub: subject
+      }, function(err, decoded) {
+        cb(err, decoded);
+      });
 };

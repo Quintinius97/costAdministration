@@ -33,6 +33,7 @@ module.exports = function(app, route) {
       if(err) {
         return res.status(500).send({error: 'Password hashing failed'});
       }
+
       //Insert User into DB if not already existing
       dbConnection.insert('user',
           {

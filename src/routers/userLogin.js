@@ -32,11 +32,13 @@ module.exports = function(app, route) {
       if(err) {
         return res.status(410).send({error: 'User does not exist'});
       }
+
       //Checking whether the provided pw does match
       crypto.comparePassword(body.password, item.pw_hash, function(err, isPasswordMatch) {
         if(err || !isPasswordMatch) {
           return res.status(401).send({error: 'Password does not match'});
         } else {
+
           //Creating the Auth Token
           let token = jwt.create(body.username);
           if(token === null || token === undefined) {

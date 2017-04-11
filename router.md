@@ -96,7 +96,7 @@ Header: Authorization: jwt
 
 Body:
 {
-    "title": "Transport",
+    "name": "Transport",
     "desc": "Getting me from A to B"
 }
 ```
