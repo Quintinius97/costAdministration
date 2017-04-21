@@ -51,6 +51,22 @@ module.exports.get = function(collection, key, cb) {
   }
 };
 
+module.exports.getByUser = function(collection, user, cb) {
+  switch(collection) {
+    case 'category':
+      category.find({username: user}).toArray(function(err, items) {
+        cb(err, items);
+      });
+
+      break;
+    case 'cost':
+      cost.find({username: user},{username: 0}).toArray(function(err, items) {
+        cb(err, items);
+      });
+      break;
+  }
+};
+
 module.exports.delete = function(collection, key, cb) {
   switch(collection) {
     case 'category':
