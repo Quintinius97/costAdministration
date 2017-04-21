@@ -75,7 +75,7 @@ module.exports.delete = function(collection, key, cb) {
       });
       break;
     case 'cost':
-      cost.remove({"id": key}, {w: 1}, function(err, result) {
+      cost.remove({"_id": key}, {w: 1}, function(err, result) {
         cb(err, result);
       });
       break;
