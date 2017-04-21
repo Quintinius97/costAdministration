@@ -15,7 +15,6 @@ module.exports.insert = function(db, jsonObj, cb) {
       );
       break;
     case 'cost':
-      cost.createIndex({"id": 1}, {unique: true});
       cost.insert(jsonObj, function(err) {
             cb(err);
           }
@@ -60,7 +59,7 @@ module.exports.getByUser = function(collection, user, cb) {
 
       break;
     case 'cost':
-      cost.find({username: user},{username: 0}).toArray(function(err, items) {
+      cost.find({username: user}, {username: 0}).toArray(function(err, items) {
         cb(err, items);
       });
       break;
@@ -70,7 +69,7 @@ module.exports.getByUser = function(collection, user, cb) {
 module.exports.delete = function(collection, key, cb) {
   switch(collection) {
     case 'category':
-      category.remove({"name": key}, {w: 1}, function(err, result) {
+      category.remove({"_id": key}, {w: 1}, function(err, result) {
         cb(err, result);
       });
       break;
