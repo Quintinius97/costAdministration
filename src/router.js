@@ -9,6 +9,8 @@ module.exports = function(app) {
   const cost = '/cost';
   require('./routers/costs')(app, cost);
   require('./routers/costAll')(app, cost + '/all');
+  require('./routers/costById')(app, cost + '/:costId');
+
 
   // Category Routers:
   const category = '/category';

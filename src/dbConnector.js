@@ -39,7 +39,7 @@ module.exports.get = function(collection, key, cb) {
       });
       break;
     case 'cost':
-      cost.findOne({"id": key}, function(err, item) {
+      cost.findOne({"_id": key}, function(err, item) {
         cb(err, item);
       });
       break;

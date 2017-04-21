@@ -35,7 +35,7 @@ Returns
 ## Costs
 ### GetbyID
 **GET**
-/cost/<id>
+/cost/\<id>
 ```
 Header: Authorization: jwt
 ```
@@ -90,7 +90,7 @@ Body:
 ```
 ### DeleteByID
 **DELETE**
-/cost/<id>
+/cost/\<id>
 ```
 Header: Authorization: jwt
 ```
@@ -127,7 +127,7 @@ Returns:
 ```
 ### get Category by ID
 **GET**
-/category/<id>
+/category/\<id>
 ```
 Header: Authorization: jwt
 ```
@@ -141,7 +141,7 @@ Returns:
 ```
 ### DeleteByID
 **DELETE**
-/category/<id>
+/category/\<id>
 ```
 Header: Authorization: jwt
 ```

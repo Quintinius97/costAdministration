@@ -4,9 +4,6 @@ const jwt = require('../helpers/jwt');
 
 module.exports = function(app, route) {
   app.route(route)
-  .get(function(req, res) {
-    // TODO
-  })
 
   //Add new costs
   .post(bodyParser, function(req, res) {
@@ -75,8 +72,4 @@ module.exports = function(app, route) {
       });
     });
   })
-
-  .delete(function(req, res) {
-    // TODO
-  });
 };

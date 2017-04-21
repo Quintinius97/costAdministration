@@ -4,7 +4,6 @@
  * Returns all costs of a user
  */
 
-const bodyParser = require('body-parser').json();
 const dbConnection = require('../dbConnector');
 const jwt = require('../helpers/jwt');
 
