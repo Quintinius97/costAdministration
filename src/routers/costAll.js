@@ -18,7 +18,6 @@ module.exports = function(app, route) {
       }
 
       //building response
-      let body = [];
       dbConnection.getByUser('cost', decoded.user, function(err, items) {
         if(err) {
           return res.status(500).send({error: 'Database connection has failed'});
