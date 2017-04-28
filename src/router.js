@@ -4,6 +4,7 @@ module.exports = function(app) {
   const user = '/user';
   require('./routers/userLogin')(app, user + '/login');
   require('./routers/userRegister')(app, user + '/register');
+  require('./routers/user')(app, user);
 
   // Cost Routers:
   const cost = '/cost';

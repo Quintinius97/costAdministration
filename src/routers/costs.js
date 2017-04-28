@@ -35,7 +35,7 @@ module.exports = function(app, route) {
       body.currency = req.body.currency;
       body.username = decoded.user;
 
-      if(body.title === undefined || body.date === undefined
+      if(body.title === undefined || body.date === undefined || body.category === undefined
           || body.price === undefined || body.currency === undefined) {
         return res.status(422).send(
             {error: 'Missing required fields'});

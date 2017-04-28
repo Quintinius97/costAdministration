@@ -3,22 +3,22 @@
 ### Login
 **POST**
 /user/login
-```
+```json
 {
     "username": "myUserName",
-    "password: "myPassword"
+    "password": "myPassword"
 }
 ```
 Returns
-```
+```json
 {
-    "jwt": "asfdgjhgfdsadfgdsadfgh"
+    "jwt": "eyJhbGckpXVCJ9.eyJzdWIiOiIxMjM0NTaW4iOnRydWV9.TJVA95OrM7E2cBab30RMH"
 }
 ```
 ### Register
 **POST**
 /user/register
-```
+```json
 {
     "name": "Hans Meier",
     "username": "myUserName",
@@ -26,9 +26,18 @@ Returns
 }
 ```
 Returns
-```
+```json
 {
-    "jwt": "asfdgjhgfdsadfgdsadfgh"
+    "jwt": "eyJhbGckpXVCJ9.eyJzdWIiOiIxMjM0NTaW4iOnRydWV9.TJVA95OrM7E2cBab30RMH"
+}
+```
+### Update User
+**POST**
+/user
+```json
+{
+    "?name": "Hans Meier",
+    "?password": "myPassword"
 }
 ```
 
@@ -40,11 +49,11 @@ Returns
 Header: Authorization: jwt
 ```
 Returns:
-```
+```json
 {
     "id": 1,
     "title": "New Car",
-    "desc": "I have bought a new car",
+    "?desc": "I have bought a new car",
     "category": "Transport",
     "date": epochtime,
     "price": 20000,
@@ -58,12 +67,12 @@ Returns:
 Header: Authorization: jwt
 ```
 Returns:
-```
+```json
 [
     {
         "id": 1,
         "title": "New Car",
-        "desc": "I have bought a new car",
+        "?desc": "I have bought a new car",
         "category": "Transport",
         "date": epochtime,
         "price": 20000,
@@ -75,13 +84,13 @@ Returns:
 ### Add
 **POST**
 /cost
-```
+```json
 Header: Authorization: jwt
 
 Body:
 {
     "title": "New Car",
-    "desc": "I have bought a new car",
+    "?desc": "I have bought a new car",
     "category": "Transport",
     "date": epochtime,
     "price": 20000,
@@ -98,14 +107,14 @@ Header: Authorization: jwt
 ### addCategory
 **POST**
 /category
-```
+```json
 Header: Authorization: jwt
 
 Body:
 {
     "name": "Transport",
     "color": "#ff0000",
-    "desc": "Getting me from A to B"
+    "?desc": "Getting me from A to B"
 }
 ```
 ### get All Categories
@@ -115,12 +124,12 @@ Body:
 Header: Authorization: jwt
 ```
 Returns:
-```
+```json
 [
     {
         "name": "Transport",
         "color": "#ff0000",
-        "desc": "Getting me from A to B"
+        "?desc": "Getting me from A to B"
     },
     ...
 ]
@@ -132,11 +141,11 @@ Returns:
 Header: Authorization: jwt
 ```
 Returns:
-```
+```json
 {
     "name": "Transport",
     "color": "#ff0000",
-    "desc": "Getting me from A to B"
+    "?desc": "Getting me from A to B"
 }
 ```
 ### DeleteByID
