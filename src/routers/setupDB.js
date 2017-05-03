@@ -54,6 +54,7 @@ module.exports = function(app, route) {
               if(err) {
                 return res.status(500).send({error: 'Standard Category creation failed'});
               }
+              // eslint-disable-next-line eqeqeq
               if(cat == standardCategories.length - 1) {
                 return res.status(200).send(
                     {info: 'DB creation finished successfully'});

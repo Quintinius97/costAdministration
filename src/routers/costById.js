@@ -32,7 +32,7 @@ module.exports = function(app, route) {
         }
         item.id = item._id;
         delete item._id;
-        delete username;
+        delete item.username;
         return res.status(200).send(item);
       });
     });

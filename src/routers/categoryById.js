@@ -31,7 +31,7 @@ module.exports = function(app, route) {
         }
         item.id = item._id;
         delete item._id;
-        delete username;
+        delete item.username;
         return res.status(200).send(item);
       });
     });
@@ -55,7 +55,7 @@ module.exports = function(app, route) {
           return res.status(401).send({error: 'Permission denied'});
         }
         //deleting Item
-        dbConnection.delete('category', costId, function(err, item) {
+        dbConnection.delete('category', catId, function(err, item) {
           if(err) {
             return res.status(500).send({error: 'Database connection has failed'});
           }
