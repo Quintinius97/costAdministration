@@ -33,28 +33,36 @@ module.exports = function(app, route) {
             {error: 'Missing required fields'});
       }
 
-      //Create Password hash
-      crypto.cryptPassword(body.password, function(err, hash) {
+      dbConnection.get('user', decoded.user, function(err, item) {
         if(err) {
-          return res.status(500).send({error: 'Password hashing failed'});
+          return res.status(500).send({error: 'User Update has failed'});
         }
-
-        //Update User in DB
-        dbConnection.delete('user', decoded.user, function(err) {
+        if(body.name === undefined) {
+          body.name = item.name;
+        }
+        if(body.password === undefined) {
+          body.pw_hash = item.pw_hash;
+        } else {
+          body.pw_hash = crypto.cryptPasswordSync(body.password);
+        }
+      });
+      //Update User in DB
+      dbConnection.delete('user', decoded.user, function(err) {
+        console.log("1");
+        if(err) {
+          console.log("2");
+          return res.status(500).send({error: 'User Update has failed'});
+        }
+        dbConnection.insert('user', {
+          name: body.name,
+          username: decoded.user,
+          pw_hash: body.pw_hash
+        }, function(err) {
           if(err) {
             return res.status(500).send({error: 'User Update has failed'});
           }
-          dbConnection.insert('user', {
-            name: body.name,
-            username: decoded.user,
-            pw_hash: hash
-          }, function(err) {
-            if(err) {
-              return res.status(500).send({error: 'User Update has failed'});
-            }
-            return res.status(200).send({info: 'User has been successfully updated'});
-          })
-        });
+          return res.status(200).send({info: 'User has been successfully updated'});
+        })
       });
     });
   });
