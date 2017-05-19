@@ -19,6 +19,7 @@ module.exports = function(app, route) {
         items.forEach(it => {
           it.id = it._id;
           delete it._id;
+          delete it.username;
         });
         return res.status(200).send(items);
       });

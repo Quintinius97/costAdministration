@@ -33,7 +33,7 @@ module.exports.insert = function(db, jsonObj, cb) {
 module.exports.get = function(collection, key, cb) {
   switch(collection) {
     case 'category':
-      category.findOne({"name": key}, function(err, item) {
+      category.findOne({"_id": key}, function(err, item) {
         cb(err, item);
       });
       break;

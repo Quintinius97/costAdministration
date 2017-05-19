@@ -11,6 +11,9 @@ module.exports = function(app, route) {
   app.route(route)
   .get(function(req, res) {
     let costId = req.params.costId;
+    if(req.get('authorization')===undefined || req.get('authorization')===null) {
+      return res.status(401).send({error: 'Authorization required'});
+    }
 
     // Connect JWT
     jwt.connect(req.get('authorization'), function(err, decoded) {
