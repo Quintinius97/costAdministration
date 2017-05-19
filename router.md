@@ -54,7 +54,7 @@ Returns:
     "id": 1,
     "title": "New Car",
     "?desc": "I have bought a new car",
-    "category": "Transport",
+    "category": 2,
     "date": epochtime,
     "price": 20000,
     "currency": "EUR"
@@ -73,7 +73,7 @@ Returns:
         "id": 1,
         "title": "New Car",
         "?desc": "I have bought a new car",
-        "category": "Transport",
+        "category": 2,
         "date": epochtime,
         "price": 20000,
         "currency": "EUR"
@@ -91,7 +91,7 @@ Body:
 {
     "title": "New Car",
     "?desc": "I have bought a new car",
-    "category": "Transport",
+    "category": 2,
     "date": epochtime,
     "price": 20000,
     "currency": "EUR"
@@ -127,6 +127,7 @@ Returns:
 ```json
 [
     {
+        "id": 2,
         "name": "Transport",
         "color": "#ff0000",
         "?desc": "Getting me from A to B"
@@ -143,6 +144,7 @@ Header: Authorization: jwt
 Returns:
 ```json
 {
+    "id": 2,
     "name": "Transport",
     "color": "#ff0000",
     "?desc": "Getting me from A to B"
@@ -153,4 +155,15 @@ Returns:
 /category/\<id>
 ```
 Header: Authorization: jwt
+```
+
+### Update Category
+**POST**
+/user
+```json
+{
+    "?name": "Transport",
+    "color": "#ff0000",
+    "?desc": "Getting me from A to B"
+}
 ```

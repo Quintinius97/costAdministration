@@ -54,7 +54,13 @@ module.exports.getByUser = function(collection, user, cb) {
   switch(collection) {
     case 'category':
       category.find({username: user}).toArray(function(err, items) {
-        cb(err, items);
+        if(err) {
+          cb(err);
+          return;
+        }
+        category.find({username: {'$exists':false}}).toArray(function(err, items2) {
+          cb(err, items.concat(items2));
+        });
       });
 
       break;

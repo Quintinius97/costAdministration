@@ -51,9 +51,7 @@ module.exports = function(app, route) {
       });
       //Update User in DB
       dbConnection.delete('user', decoded.user, function(err) {
-        console.log("1");
         if(err) {
-          console.log("2");
           return res.status(500).send({error: 'User Update has failed'});
         }
         dbConnection.insert('user', {
