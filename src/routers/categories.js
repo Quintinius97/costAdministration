@@ -33,6 +33,7 @@ module.exports = function(app, route) {
       body.color = req.body.color;
       body.desc = req.body.desc;
       body.username = decoded.user;
+      body.isStd = 0;
 
       if(body.name === undefined || body.color === undefined) {
         return res.status(422).send(

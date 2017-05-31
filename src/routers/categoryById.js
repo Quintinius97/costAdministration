@@ -71,7 +71,10 @@ module.exports = function(app, route) {
         if(item===undefined || item ===null) {
           return res.status(404).send({error: 'Requested Id does not exist'});
         }
-        if(item.username !== decoded.user && item.username!== undefined) {
+        if(item.isStd === 1) {
+          return res.status(403).send({error: 'Standard Category cannot be modified'});
+        }
+        if(item.username !== decoded.user) {
           return res.status(401).send({error: 'Permission denied'});
         }
         if(body.name === undefined) {
@@ -83,7 +86,7 @@ module.exports = function(app, route) {
         if(body.desc === undefined) {
           body.desc = item.desc;
         }
-        //Update User in DB
+        //Update Category in DB
         dbConnection.delete('category', catId, function(err) {
           if(err) {
             return res.status(500).send({error: 'Category Update has failed'});
@@ -116,6 +119,9 @@ module.exports = function(app, route) {
         }
         if(item===undefined || item ===null) {
           return res.status(404).send({error: 'Requested Id does not exist'});
+        }
+        if(item.isStd === 1) {
+          return res.status(403).send({error: 'Standard Category cannot be deleted'});
         }
         if(item.username !== decoded.user) {
           return res.status(403).send({error: 'Permission denied'});
