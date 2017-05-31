@@ -118,7 +118,7 @@ module.exports = function(app, route) {
           return res.status(404).send({error: 'Requested Id does not exist'});
         }
         if(item.username !== decoded.user) {
-          return res.status(401).send({error: 'Permission denied'});
+          return res.status(403).send({error: 'Permission denied'});
         }
         //deleting Item
         dbConnection.delete('category', catId, function(err) {
