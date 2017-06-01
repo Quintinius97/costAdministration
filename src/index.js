@@ -1,9 +1,9 @@
 'use strict';
 const express = require('express');
-//const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 require('./router')(app);
 
 app.listen(4000, function() {
