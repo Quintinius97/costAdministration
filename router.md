@@ -167,3 +167,10 @@ Header: Authorization: jwt
     "?desc": "Getting me from A to B"
 }
 ```
+
+### Verify Token
+**GET**
+/verify
+```
+Header: Authorization: jwt
+```

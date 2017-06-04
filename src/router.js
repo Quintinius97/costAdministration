@@ -21,4 +21,7 @@ module.exports = function(app) {
 
   // Setup
   require('./routers/setupDB')(app, '/setup/db');
+
+  //Verify
+  require('./routers/verifyJwt')(app, '/verify');
 };
