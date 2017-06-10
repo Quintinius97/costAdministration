@@ -8,34 +8,34 @@ const dbConnection = require('../dbConnector');
 const standardCategories = [
   {
     name: "Holiday",
-    color: "#087099",
+    color: "#FFCCCC",
     isStd: 1
   },
   {
     name: "Transport",
     desc: "Getting me from A to B",
-    color: "#cc3333",
+    color: "#FFFFCC",
     isStd: 1
   },
   {
     name: "Clothing",
-    color: "#b8b327",
+    color: "#CCFFCC",
     isStd: 1
   },
   {
     name: "Food & Drinks",
-    color: "#5c7829",
+    color: "#CCFFFF",
     isStd: 1
   },
   {
     name: "Events",
     desc: "Musicals, Opera, Cinema, ...",
-    color: "#000",
+    color: "#CCCCFF",
     isStd: 1
   },
   {
     name: "Education",
-    color: "#282828",
+    color: "#FFCCFF",
     isStd: 1
   }
 ];
