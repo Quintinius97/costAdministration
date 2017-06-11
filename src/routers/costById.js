@@ -6,6 +6,7 @@
 
 const dbConnection = require('../dbConnector');
 const jwt = require('../helpers/jwt');
+const bodyParser = require('body-parser').json();
 
 module.exports = function(app, route) {
   app.route(route)
@@ -73,6 +74,8 @@ module.exports = function(app, route) {
         if(item.username !== decoded.user) {
           return res.status(401).send({error: 'Permission denied'});
         }
+        body.username=item.username;
+
         if(body.title === undefined) {
           body.title = item.title;
         }
